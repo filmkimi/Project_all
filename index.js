@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 1. Sound Effect Control (ระบบเล่นเสียงคลิก)
     // ==========================================
-    const clickSound = new Audio('/sound_bigbike.MP3');
-    clickSound.volume = 0.5; // ปรับความดัง 50%
+    const clickSound = new Audio('sound_bigbike.MP3');
+    clickSound.volume = 0.5; 
 
-    // ดักฟังการคลิกทั้งหน้าต่าง ( Event Delegation )
+  
     document.addEventListener('click', (e) => {
-        // เช็กว่าจุดที่กด หรือแท็กแม่ มี class "sound-btn"
+      
         if (e.target.closest('.sound-btn')) {
             console.log('🔊 ปุ่ม sound-btn ถูกกดแล้ว!');
             
-            clickSound.currentTime = 0; // รีเซ็ตเวลาให้เริ่มใหม่ทันที
+            clickSound.currentTime = 0; 
             
             const playPromise = clickSound.play();
             if (playPromise !== undefined) {
