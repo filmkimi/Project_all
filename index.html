@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Biker - Hyperbike Complete Edition</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700;1,900&family=Orbitron:wght@700;900&family=Teko:wght@600;700&family=Chakra+Petch:ital,wght@0,500;0,700;1,700;1,900&family=Prompt:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700;1,900&family=Prompt:wght@300;400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
+<body
+    class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
 
-    <!-- Custom Cursor -->
+
     <img id="custom-cursor" src="motor1.png"
         class="fixed pointer-events-none z-[9999] w-8 h-8 -translate-x-1/2 -translate-y-1/2" alt="cursor">
 
-    <canvas id="speedCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+    <canvas id="speedCanvas"></canvas>
 
-    <!-- Navigation Bar -->
+
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-neutral-900/80 border-b border-neutral-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#"
@@ -30,7 +31,8 @@
                 <p>APEX//RIDER</p>
             </a>
 
-            <div class="hidden md:flex space-x-10 text-sm font-semibold text-neutral-300 items-center">
+            <div class="hidden md:flex space-x-10 text-sm font-semibold text-neutral-300">
+
                 <a href="#kawasaki"
                     class="sound-btn hover:text-emerald-400 transition-colors uppercase font-chakra tracking-wider">KAWASAKI</a>
                 <a href="#yamaha"
@@ -39,16 +41,6 @@
                     class="sound-btn hover:text-emerald-400 transition-colors uppercase font-chakra tracking-wider">HONDA</a>
                 <a href="#contact"
                     class="sound-btn hover:text-emerald-400 transition-colors uppercase font-chakra tracking-wider">CONTACT</a>
-                
-                <!-- ปุ่มสมัครสมาชิกสีเขียวข้าง CONTACT -->
-                <button id="navMemberBtn" onclick="openModal('member')"
-                    class="sound-btn btn-neon-glow flex items-center gap-1.5 px-4 py-2 rounded-lg bg-apex-green text-black font-extrabold text-xs tracking-wider uppercase active:scale-95 transition cursor-pointer">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
-                        <path
-                            d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z" />
-                    </svg>
-                    <span>Member</span>
-                </button>
             </div>
 
             <button id="menu-btn" class="md:hidden text-neutral-300 hover:text-emerald-400 focus:outline-none p-2">
@@ -57,9 +49,8 @@
                     </path>
                 </svg>
             </button>
-            
             <div id="mobile-menu"
-                class="hidden md:hidden bg-neutral-900/95 border-b border-neutral-800 px-4 pt-2 pb-4 space-y-2 font-chakra text-sm font-semibold absolute top-full left-0 w-full">
+                class="hidden md:hidden bg-neutral-900/95 border-b border-neutral-800 px-4 pt-2 pb-4 space-y-2 font-chakra text-sm font-semibold">
                 <a href="#kawasaki"
                     class="sound-btn block px-3 py-2 rounded-md text-neutral-300 hover:bg-neutral-800 hover:text-emerald-400 transition-all uppercase">KAWASAKI</a>
                 <a href="#yamaha"
@@ -68,19 +59,11 @@
                     class="sound-btn block px-3 py-2 rounded-md text-neutral-300 hover:bg-neutral-800 hover:text-emerald-400 transition-all uppercase">HONDA</a>
                 <a href="#contact"
                     class="sound-btn block px-3 py-2 rounded-md text-neutral-300 hover:bg-neutral-800 hover:text-emerald-400 transition-all uppercase">CONTACT</a>
-                <button onclick="openModal('member')"
-                    class="sound-btn btn-neon-glow w-full flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-apex-green text-black font-extrabold text-xs tracking-wider uppercase active:scale-95 transition">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
-                        <path
-                            d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z" />
-                    </svg>
-                    <span>สมัครสมาชิก</span>
-                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Section 1: Hero Section -->
+
     <section class="min-h-[80vh] flex flex-col items-center justify-center relative pt-24 px-4">
         <div class="group relative cursor-pointer text-center py-12 px-8 rounded-3xl transition-all duration-700">
 
@@ -142,7 +125,7 @@
                                 class="text-white font-bold text-base sm:text-lg">Supercharged</span></div>
                     </div>
                     <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">
-                        ขุมพลังซูเปอร์ชาร์จเจอร์ระดับตำนาน ถ่ายทอดดีเอ็นเอตัวแรงจาก Kawasaki Heavy Industries</p>
+                       ขุมพลังซูเปอร์ชาร์จเจอร์ระดับตำนาน ถ่ายทอดดีเอ็นเอตัวแรงจาก Kawasaki Heavy Industries</p>
                 </div>
             </div>
 
@@ -168,15 +151,14 @@
                                 class="text-white font-bold text-base sm:text-lg">Crossplane CP4</span></div>
                     </div>
                     <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">
-                        สปอร์ตเรซซิ่งตัวแรงดีเอ็นเอจาก YZR-M1 โดดเด่นด้วยเครื่องยนต์ CP4 Crossplane
-                        เพลาข้อเหวี่ยงทรงพลังและเสียงคำรามอันเป็นเอกลักษณ์</p>
+                       สปอร์ตเรซซิ่งตัวแรงดีเอ็นเอจาก YZR-M1 โดดเด่นด้วยเครื่องยนต์ CP4 Crossplane เพลาข้อเหวี่ยงทรงพลังและเสียงคำรามอันเป็นเอกลักษณ์</p>
                 </div>
             </div>
 
             <!-- Slide 3: Honda CBR1000RR-R SP -->
             <div
                 class="slide-item absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 z-0 pointer-events-none">
-                <img src="https://www.greatbiker.com/wp-content/uploads/2022/03/cbr1000-10.jpg"
+                <img src="https://www.motonaked.com/wp-content/uploads/2019/11/195885_2020_HONDA_CBR1000RR-R_SP-1280x853.jpg"
                     alt="Honda CBR1000RR-R" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent"></div>
                 <span
@@ -194,8 +176,7 @@
                         <div><span class="text-neutral-400 block">SUSPENSION</span><span
                                 class="text-white font-bold text-base sm:text-lg">Öhlins Smart EC</span></div>
                     </div>
-                    <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">พัฒนาร่วมกับทีมแข่ง HRC
-                        ติดตั้ง Winglets แอโรไดนามิกแบบเดียวกับตัวแข่ง RC213V</p>
+                    <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">พัฒนาร่วมกับทีมแข่ง HRC ติดตั้ง Winglets แอโรไดนามิกแบบเดียวกับตัวแข่ง RC213V</p>
                 </div>
             </div>
 
@@ -220,12 +201,11 @@
                         <div><span class="text-neutral-400 block">PARTS</span><span
                                 class="text-white font-bold text-base sm:text-lg">Showa SFF-BP</span></div>
                     </div>
-                    <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">สปอร์ตเรซซิ่งพิกัด 400cc
-                        ขุมพลัง 4 สูบเรียง เสียงคำรามลากรอบสูงถึง 15,000+ rpm ถ่ายทอดดีเอ็นเอตระกูล ZX สายพันธุ์แข่ง</p>
+                    <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">สปอร์ตเรซซิ่งพิกัด 400cc ขุมพลัง 4 สูบเรียง เสียงคำรามลากรอบสูงถึง 15,000+ rpm ถ่ายทอดดีเอ็นเอตระกูล ZX สายพันธุ์แข่ง</p>
                 </div>
             </div>
 
-            <!-- Slide 5: Honda CBR500R -->
+            <!-- Slide 5: Yamaha MT-10 SP -->
             <div
                 class="slide-item absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 z-0 pointer-events-none">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQudyB20lkaExe_hmfAMW-lJ_KaQLBEb9efKRoAxbh8IygSTIP4D11AqJI&s=10"
@@ -236,7 +216,7 @@
                     MIDDLEWEIGHT</span>
                 <div class="absolute bottom-6 left-6 right-6 md:left-10 md:right-10 space-y-3">
                     <h3 class="font-chakra text-3xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        HONDA CBR500R</h3>
+                       HONDA CBR500R</h3>
                     <div
                         class="inline-grid grid-cols-3 gap-4 sm:gap-6 py-2.5 px-5 bg-neutral-900/80 border border-neutral-800 backdrop-blur-md rounded-xl font-chakra text-xs">
                         <div><span class="text-neutral-400 block">POWER</span><span
@@ -246,9 +226,7 @@
                         <div><span class="text-neutral-400 block">SUSPENSION</span><span
                                 class="text-white font-bold text-base sm:text-lg">Showa SFF-BP</span></div>
                     </div>
-                    <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">สปอร์ตบิ๊กไบค์พิกัดกลาง
-                        ยอดนิยม ขับเคลื่อนด้วยเครื่องยนต์ 2 สูบเรียง ดีไซน์โฉบเฉี่ยวพร้อมโช้คหน้าหัวกลับ Showa
-                        ควบคุมง่ายเหมาะกับทุกการเดินทาง</p>
+                    <p class="text-neutral-300 text-xs sm:text-sm max-w-xl leading-relaxed">สปอร์ตบิ๊กไบค์พิกัดกลาง ยอดนิยม ขับเคลื่อนด้วยเครื่องยนต์ 2 สูบเรียง ดีไซน์โฉบเฉี่ยวพร้อมโช้คหน้าหัวกลับ Showa ควบคุมง่ายเหมาะกับทุกการเดินทาง</p>
                 </div>
             </div>
 
@@ -259,894 +237,823 @@
 
             <div id="dotContainer" class="absolute top-6 right-6 flex space-x-2 z-50">
                 <button class="dot-btn w-6 h-3 rounded-full bg-emerald-500 transition-all"></button>
-                <button class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
-                <button class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
-                <button class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
-                <button class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
+                <button
+                    class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
+                <button
+                    class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
+                <button
+                    class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
+                <button
+                    class="dot-btn w-3 h-3 rounded-full bg-neutral-700 hover:bg-neutral-500 transition-all"></button>
             </div>
         </div>
     </section>
 
     <!-- Section 3: Brand Sections -->
 
-    <!-- KAWASAKI SECTION GROUP -->
-    <div id="kawasaki">
-        <!-- ZX-25R -->
-        <section id="zx-25r" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800 overflow-hidden">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        NINJA SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        KAWASAKI <br />
-                        <span class="text-green-500">NINJA ZX-25R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        สปอร์ตไบค์พิกัด 250cc ขับเคลื่อนด้วยเครื่องยนต์ 4 สูบเรียง ลากรอบได้สูงถึง 17,000 rpm
-                        ให้เสียงเครื่องยนต์คำรามอันเป็นเอกลักษณ์ มาพร้อมเทคโนโลยีตัวช่วยการขับขี่ระดับพรีเมียม
-                        ถ่ายทอดดีเอ็นเอความสปอร์ตตระกูล Ninja อย่างเต็มขั้น
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Engine: 249cc, 4-stroke, In-Line Four</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Max Power: 51 PS @ 15,500 rpm (With Ram-Air)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Technology: KTRC, KQS, Power Modes, ABS</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-green-400 font-semibold">
-                            <span class="text-green-500">💰</span>
-                            <span>Price: 299,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+    <!-- KAWASAKI -->
+    <section id="kawasaki" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    NINJA SERIES
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://realmotosports.com/wp-content/uploads/2025/10/zx-25R-2024-2.jpg"
-                        alt="Kawasaki Ninja ZX-25R" class="w-full h-full object-cover">
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    KAWASAKI <br />
+                    <span class="text-green-500">NINJA ZX-25R</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    สปอร์ตไบค์พิกัด 250cc ขับเคลื่อนด้วยเครื่องยนต์ 4 สูบเรียง ลากรอบได้สูงถึง 17,000 rpm
+                    ให้เสียงเครื่องยนต์คำรามอันเป็นเอกลักษณ์ มาพร้อมเทคโนโลยีตัวช่วยการขับขี่ระดับพรีเมียม
+                    ถ่ายทอดดีเอ็นเอความสปอร์ตตระกูล Ninja อย่างเต็มขั้น
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Engine: 249cc, 4-stroke, In-Line Four</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Max Power: 51 PS @ 15,500 rpm (With Ram-Air)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Technology: KTRC, KQS, Power Modes, ABS</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- ZX-4R -->
-        <section id="zx-4r" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        NINJA SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        KAWASAKI <br />
-                        <span class="text-green-500">NINJA ZX-4R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        สปอร์ตไบค์พิกัด 400cc ขับเคลื่อนด้วยเครื่องยนต์ 4 สูบเรียงทรงพลัง รีดรอบได้สูงสุดกว่า 15,000 rpm
-                        มอบพละกำลังระดับท็อปในคลาส ถ่ายทอดสมรรถนะการควบคุมและเทคโนโลยีจากสนามแข่ง WorldSBK อย่างเต็มรูปแบบ
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Engine: 399cc, 4-stroke, In-Line Four</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Max Power: 77 PS @ 14,500 rpm (Up to 80 PS with Ram-Air)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Technology: KTRC, KQS, Power Modes, Showa SFF-BP / BFRC lite</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-green-400 font-semibold">
-                            <span class="text-green-500">💰</span>
-                            <span>Price: 360,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://www.checkraka.com/uploaded/gallery/52/52fcc5a7db45bf7999d5c5002496a14f.jpg"
-                        alt="Kawasaki Ninja ZX-4R" class="w-full h-full object-cover">
+                <img src="https://realmotosports.com/wp-content/uploads/2025/10/zx-25R-2024-2.jpg"
+                    alt="Kawasaki Ninja ZX-25R" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+    <section id="kawasaki" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    NINJA SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    KAWASAKI <br />
+                    <span class="text-green-500">NINJA ZX-4R</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    สปอร์ตไบค์พิกัด 400cc ขับเคลื่อนด้วยเครื่องยนต์ 4 สูบเรียงทรงพลัง รีดรอบได้สูงสุดกว่า 15,000 rpm
+                    มอบพละกำลังระดับท็อปในคลาส ถ่ายทอดสมรรถนะการควบคุมและเทคโนโลยีจากสนามแข่ง WorldSBK อย่างเต็มรูปแบบ
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Engine: 399cc, 4-stroke, In-Line Four</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Max Power: 77 PS @ 14,500 rpm (Up to 80 PS with Ram-Air)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Technology: KTRC, KQS, Power Modes, Showa SFF-BP / BFRC lite</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- ZX-6R -->
-        <section id="zx-6r" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        NINJA SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        KAWASAKI <br />
-                        <span class="text-green-500">NINJA ZX-6R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        ซูเปอร์สปอร์ตไบค์ระดับคลาส 600cc ขับเคลื่อนด้วยเครื่องยนต์ 4 สูบเรียง 636cc อันเป็นเอกลักษณ์
-                        ให้แรงบิดรอบกลางถึงปลายทรงพลัง ดีไซน์แอนโรไดนามิกดุดัน
-                        ออกแบบมาเพื่อมอบความตื่นเต้นทั้งบนถนนหลวงและประสิทธิภาพระดับสูงสุดในแทร็กเดย์
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Engine: 636cc, 4-stroke, In-Line Four</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Max Power: 124 PS @ 13,000 rpm (Up to 130 PS with Ram-Air)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Technology: KTRC, KQS, Power Modes, KIBS, Showa SFF-BP</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-green-400 font-semibold">
-                            <span class="text-green-500">💰</span>
-                            <span>Price: 498,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://www.checkraka.com/uploaded/gallery/84/8483a4fabaf2de5ff9e68a6346f46bdc.jpg"
-                        alt="Kawasaki Ninja ZX-6R" class="w-full h-full object-cover">
+                <img src="https://www.checkraka.com/uploaded/gallery/52/52fcc5a7db45bf7999d5c5002496a14f.jpg"
+                    alt="Kawasaki Ninja ZX-4R" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+    <section id="kawasaki" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    NINJA SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    KAWASAKI <br />
+                    <span class="text-green-500">NINJA ZX-6R</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    ซูเปอร์สปอร์ตไบค์ระดับคลาส 600cc ขับเคลื่อนด้วยเครื่องยนต์ 4 สูบเรียง 636cc อันเป็นเอกลักษณ์
+                    ให้แรงบิดรอบกลางถึงปลายทรงพลัง ดีไซน์แอนโรไดนามิกดุดัน
+                    ออกแบบมาเพื่อมอบความตื่นเต้นทั้งบนถนนหลวงและประสิทธิภาพระดับสูงสุดในแทร็กเดย์
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Engine: 636cc, 4-stroke, In-Line Four</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Max Power: 124 PS @ 13,000 rpm (Up to 130 PS with Ram-Air)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Technology: KTRC, KQS, Power Modes, KIBS, Showa SFF-BP</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- ZX-10R -->
-        <section id="zx-10r" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        NINJA SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        KAWASAKI <br />
-                        <span class="text-green-500">NINJA ZX-10R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        ซูเปอร์สปอร์ตไบค์ระดับท็อปคลาสที่กวาดแชมป์ WorldSBK มาอย่างยาวนาน มาพร้อมกับเครื่องยนต์ 4
-                        สูบเรียงทรงพลัง และเทคโนโลยีอากาศพลศาสตร์ (Aerodynamics) แบบบูรณาการที่ช่วยเพิ่มแรงกด (Downforce)
-                        ในขณะทำความเร็วสูง ให้การควบคุมที่แม่นยำสูงสุดทั้งบนถนนและสนามแข่ง
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Engine: 998cc, 4-stroke, In-Line Four</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Max Power: 203 PS @ 13,200 rpm (Up to 213 PS with Ram-Air)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Technology: KCMF, S-KTRC, KLCM, KIBS</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-green-400 font-semibold">
-                            <span class="text-green-500">💰</span>
-                            <span>Price: 759,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://www.checkraka.com/uploaded/gallery/39/39b152a8858daf47e719dcb8a47e2214.jpg"
-                        alt="Kawasaki Ninja ZX-10R" class="w-full h-full object-cover">
+                <img src="https://www.checkraka.com/uploaded/gallery/84/8483a4fabaf2de5ff9e68a6346f46bdc.jpg"
+                    alt="Kawasaki Ninja ZX-6R" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+    <section id="kawasaki" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    NINJA SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    KAWASAKI <br />
+                    <span class="text-green-500">NINJA ZX-10R</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    ซูเปอร์สปอร์ตไบค์ระดับท็อปคลาสที่กวาดแชมป์ WorldSBK มาอย่างยาวนาน มาพร้อมกับเครื่องยนต์ 4
+                    สูบเรียงทรงพลัง และเทคโนโลยีอากาศพลศาสตร์ (Aerodynamics) แบบบูรณาการที่ช่วยเพิ่มแรงกด (Downforce)
+                    ในขณะทำความเร็วสูง ให้การควบคุมที่แม่นยำสูงสุดทั้งบนถนนและสนามแข่ง
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Engine: 998cc, 4-stroke, In-Line Four</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Max Power: 203 PS @ 13,200 rpm (Up to 213 PS with Ram-Air)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Technology: KCMF, S-KTRC, KLCM, KIBS</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- ZX-10RR -->
-        <section id="zx-10rr" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        NINJA SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        KAWASAKI <br />
-                        <span class="text-green-500">NINJA ZX-10RR</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        สายพันธุ์สปอร์ตเรซซิ่งรุ่นลิมิเต็ด ยกระดับสมรรถนะจากรุ่น ZX-10R เพื่อชัยชนะบนสนามแข่งโดยเฉพาะ
-                        เสริมความแข็งแกร่งด้วยก้านสูบไทเทเนียม Pankl, ลูกสูบน้ำหนักเบาจาก Pankl และล้อฟอร์จ Marchesini
-                        พร้อมสำหรับการปรับแต่งสู่การแข่งขันระดับ WorldSBK
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Engine: 998cc, 4-stroke, In-Line Four (Pankl Titanium Parts)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Max Power: 214 PS @ 14,000 rpm (With Ram-Air)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-green-500">🏁</span>
-                            <span>Technology: KCMF, S-KTRC, KLCM, KIBS, KQS, Marchesini Forged Wheels</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-green-400 font-semibold">
-                            <span class="text-green-500">💰</span>
-                            <span>Price: 1,208,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://www.peeramotosports.co.th/wp-content/uploads/2020/12/ZX10RR-2021-fornt-1199x799.jpg"
-                        alt="Kawasaki Ninja ZX-10RR" class="w-full h-full object-cover">
+                <img src="https://www.checkraka.com/uploaded/gallery/39/39b152a8858daf47e719dcb8a47e2214.jpg"
+                    alt="Kawasaki Ninja ZX-10R" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+    <section id="kawasaki" class="py-24 px-6 bg-neutral-950 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-green-950/80 border border-green-500/40 text-green-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    NINJA SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    KAWASAKI <br />
+                    <span class="text-green-500">NINJA ZX-10RR</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    สายพันธุ์สปอร์ตเรซซิ่งรุ่นลิมิเต็ด ยกระดับสมรรถนะจากรุ่น ZX-10R เพื่อชัยชนะบนสนามแข่งโดยเฉพาะ
+                    เสริมความแข็งแกร่งด้วยก้านสูบไทเทเนียม Pankl, ลูกสูบน้ำหนักเบาจาก Pankl และล้อฟอร์จ Marchesini
+                    พร้อมสำหรับการปรับแต่งสู่การแข่งขันระดับ WorldSBK
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Engine: 998cc, 4-stroke, In-Line Four (Pankl Titanium Parts)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Max Power: 214 PS @ 14,000 rpm (With Ram-Air)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-green-500">🏁</span>
+                        <span>Technology: KCMF, S-KTRC, KLCM, KIBS, KQS, Marchesini Forged Wheels</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-green-500 text-green-400 font-chakra font-bold italic hover:bg-green-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <!-- YAMAHA SECTION GROUP -->
-    <div id="yamaha">
-        <!-- R3 -->
-        <section id="r3" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        R-SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        YAMAHA <br />
-                        <span class="text-blue-500">YZF-R3</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        Yamaha YZF-R3 ได้รับการยอมรับอย่างกว้างขวางว่าเป็นหนึ่งในรถสปอร์ตน้ำหนักเบาที่ดีที่สุดในตลาด
-                        โดยโดดเด่นด้วยการผสมผสานระหว่างดีไซน์ที่ดุดัน ได้รับแรงบันดาลใจจากรถแข่ง และการส่งกำลังที่นุ่มนวล
-                        ควบคุมง่าย เหมาะทั้งสำหรับผู้ขับขี่มือใหม่และผู้ที่ใช้รถในชีวิตประจำวัน
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Engine: 321cc, Liquid-cooled Parallel Twin</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Max Power: 42 PS @ 10,750 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Technology: Assist & Slipper Clutch, LCD Display, LED Lighting</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-blue-400 font-semibold">
-                            <span class="text-blue-500">💰</span>
-                            <span>Price: 207,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-green-500/20 rounded-full blur-3xl -z-10 group-hover:bg-green-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://images5.1000ps.net/images_bikekat/2026/4-Yamaha/7961-R3/017-638993129573262107-yamaha-r3.jpg?width=920&height=566&mode=crop&format=webp"
-                        alt="Yamaha YZF-R3"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://www.peeramotosports.co.th/wp-content/uploads/2020/12/ZX10RR-2021-fornt-1199x799.jpg"
+                    alt="Kawasaki Ninja ZX-10RR" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- YAMAHA -->
+    <section id="yamaha" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    R-SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    YAMAHA <br />
+                    <span class="text-blue-500">YZF-R1</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    สืบทอด DNA จากรถแข่ง YZR-M1 โดดเด่นด้วยเครื่องยนต์ Crossplane CP4 998cc
+                    ที่ให้เสียงคำรามอันเป็นเอกลักษณ์และแรงบิดที่ต่อเนื่อง พร้อมระบบอิเล็กทรอนิกส์ IMU 6 แกน
+                    ที่ควบคุมทุกการเคลื่อนไหวได้อย่างแม่นยำ
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Engine: 998cc, liquid-cooled inline 4 cylinder</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Max Power: 200 PS @ 13,500 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Technology: 6-axis IMU, YCC-T, YCC-I, EBM</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- R7 -->
-        <section id="r7" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        R-SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        YAMAHA <br />
-                        <span class="text-blue-500">YZF-R7</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        Yamaha YZF-R7 เป็นรถสปอร์ตขนาดกลาง (Middleweight Sport Bike) ที่ได้รับความนิยมอย่างมาก
-                        ออกแบบมาให้มีความสมดุลระหว่างการใช้งานในชีวิตประจำวันกับรูปลักษณ์และสมรรถนะแบบรถแข่ง
-                        ด้วยดีไซน์ที่ดุดันและได้รับแรงบันดาลใจจากสนามแข่ง ทำให้ R7
-                        เป็นตัวเลือกที่เชื่อมต่อระหว่างรถสปอร์ตสำหรับผู้เริ่มต้นที่ขี่ง่ายกับรถซูเปอร์ไบค์ลิตรคลาส
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Engine: 689cc liquid-cooled parallel-twin (CP2 engine)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Max Power: 73.4 HP @ 8,750 RPM</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Technology: Assist & Slipper Clutch, KYB 41mm Inverted Fork, ABS</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-blue-400 font-semibold">
-                            <span class="text-blue-500">💰</span>
-                            <span>Price: 339,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://imgcdn.zigwheels.co.th/large/gallery/exterior/99/3636/yamaha-r7-26988.jpg"
-                        alt="Yamaha YZF-R7"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://imgcdn.zigwheels.ph/large/gallery/exterior/86/2923/yamaha-yzf-r1-slant-rear-view-full-image-206327.jpg"
+                    alt="Yamaha YZF-R1"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+    <section id="yamaha" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    R-SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    YAMAHA <br />
+                    <span class="text-blue-500">YZF-R9</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    Yamaha R9
+                    เป็นรถที่เชื่อมช่องว่างระหว่างความคล่องตัวของรถจักรยานยนต์พิกัดกลางกับแรงบิดของรถระดับลิตรคลาส
+                    โดยใช้เครื่องยนต์ CP3 แบบ 3 สูบเรียง ขนาด 890 ซีซี ให้กำลังสูงสุด 117 แรงม้า และแรงบิด 69 ปอนด์-ฟุต
+                    ติดตั้งอยู่บนเฟรมซูเปอร์สปอร์ตที่ออกแบบมาโดยเฉพาะ พร้อมระบบเบรก Brembo ระดับพรีเมียม
+                    ทำให้มีสมรรถนะยอดเยี่ยม ทั้งสำหรับการใช้งานบนถนนจริงและการขับขี่ในสนามแข่ง
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Engine: 890cc, Liquid-cooled CP3 Inline 3 Cylinder</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Max Power: 119 PS @ 10,000 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Technology: 6-axis IMU, Brembo Stylema® Brakes, KYB Fully Adjustable Suspension, Quick
+                            Shift System (QSS), Slide Control (SCS), Lift Control (LIF), Brake Control (BC), Traction
+                            Control (TCS), Launch Control (LCS), Back Slip Regulator (BSR), Ride Modes, TFT Display,
+                            Ride-by-Wire (YCC-T), ABS, 6-speed Transmission</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- R6 -->
-        <section id="r6" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        R-SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        YAMAHA <br />
-                        <span class="text-blue-500">YZF-R6</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        รถซูเปอร์สปอร์ตระดับตำนานของ Yamaha ที่โดดเด่นด้วยเครื่องยนต์ 4 สูบเรียง 599 ซีซี รอบจัด
-                        ให้การตอบสนองที่เฉียบคมและการควบคุมที่ยอดเยี่ยม จนกลายเป็นหนึ่งในรถคลาส 600 ซีซี
-                        ที่ได้รับความนิยมมากที่สุดสำหรับการขับขี่ในสนามแข่ง แม้ปัจจุบันจะเน้นจำหน่ายสำหรับแทร็กเรซซิ่งเป็นหลัก
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Engine: 599cc, Liquid-cooled Inline 4 Cylinder</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Max Power: 118.4 PS @ 14,500 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Technology: Ride-by-Wire (YCC-T), Quick Shifter, TCS, Slipper Clutch</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-blue-400 font-semibold">
-                            <span class="text-blue-500">💰</span>
-                            <span>Price: 549,000 THB </span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://motorcycmagazine.grandprix.co.th/wp-content/uploads/2021/11/2022-Yamaha-R6-Race-1-1024x707.jpg"
-                        alt="Yamaha YZF-R6"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://www.checkraka.com/uploaded/gallery/70/704c51932aefe67847120f24cc4b1cae.jpg"
+                    alt="Yamaha YZF-R9"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="yamaha" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    R-SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    YAMAHA <br />
+                    <span class="text-blue-500">YZF-R7</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    Yamaha YZF-R7 เป็นรถสปอร์ตขนาดกลาง (Middleweight Sport Bike) ที่ได้รับความนิยมอย่างมาก
+                    ออกแบบมาให้มีความสมดุลระหว่างการใช้งานในชีวิตประจำวันกับรูปลักษณ์และสมรรถนะแบบรถแข่ง
+                    ด้วยดีไซน์ที่ดุดันและได้รับแรงบันดาลใจจากสนามแข่ง ทำให้ R7
+                    เป็นตัวเลือกที่เชื่อมต่อระหว่างรถสปอร์ตสำหรับผู้เริ่มต้นที่ขี่ง่าย
+                    กับรถซูเปอร์ไบค์ลิตรคลาสที่มีสมรรถนะสูง
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Engine:689cc liquid-cooled parallel-twin (CP2 engine) [0.4].</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Max Power: 73.4 HP @ 8,750 RPM</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Technology: 6-axis IMU, Brembo Brakes, Quick Shifter, Ride Modes</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- R9 -->
-        <section id="r9" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        R-SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        YAMAHA <br />
-                        <span class="text-blue-500">YZF-R9</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        Yamaha R9
-                        เป็นรถที่เชื่อมช่องว่างระหว่างความคล่องตัวของรถจักรยานยนต์พิกัดกลางกับแรงบิดของรถระดับลิตรคลาส
-                        โดยใช้เครื่องยนต์ CP3 แบบ 3 สูบเรียง ขนาด 890 ซีซี ให้กำลังสูงสุด 117 แรงม้า และแรงบิด 69 ปอนด์-ฟุต
-                        ติดตั้งอยู่บนเฟรมซูเปอร์สปอร์ตที่ออกแบบมาโดยเฉพาะ พร้อมระบบเบรก Brembo ระดับพรีเมียม
-                        ทำให้มีสมรรถนะยอดเยี่ยม ทั้งสำหรับการใช้งานบนถนนจริงและการขับขี่ในสนามแข่ง
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Engine: 890cc, Liquid-cooled CP3 Inline 3 Cylinder</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Max Power: 119 PS @ 10,000 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Technology: 6-axis IMU, Brembo Stylema® Brakes, KYB Suspension</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-blue-400 font-semibold">
-                            <span class="text-blue-500">💰</span>
-                            <span>Price: 479,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://www.checkraka.com/uploaded/gallery/70/704c51932aefe67847120f24cc4b1cae.jpg"
-                        alt="Yamaha YZF-R9"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://imgcdn.zigwheels.co.th/large/gallery/exterior/99/3636/yamaha-r7-26988.jpg"
+                    alt="Yamaha YZF-R1"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="yamaha" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    R-SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    YAMAHA <br />
+                    <span class="text-blue-500">YZF-R3</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    Yamaha YZF-R3 ได้รับการยอมรับอย่างกว้างขวางว่าเป็นหนึ่งในรถสปอร์ตน้ำหนักเบาที่ดีที่สุดในตลาด
+                    โดยโดดเด่นด้วยการผสมผสานระหว่างดีไซน์ที่ดุดัน ได้รับแรงบันดาลใจจากรถแข่ง และการส่งกำลังที่นุ่มนวล
+                    ควบคุมง่าย ทำให้เหมาะทั้งสำหรับผู้ขับขี่มือใหม่และผู้ที่ใช้รถในชีวิตประจำวัน
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Engine: : 321cc, Liquid-cooled Parallel Twin</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Max Power: 42 PS @ 10,750 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Technology: Assist & Slipper Clutch, LCD Display, LED Lighting</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- R1 -->
-        <section id="r1" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        R-SERIES
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        YAMAHA <br />
-                        <span class="text-blue-500">YZF-R1</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        สืบทอด DNA จากรถแข่ง YZR-M1 โดดเด่นด้วยเครื่องยนต์ Crossplane CP4 998cc
-                        ที่ให้เสียงคำรามอันเป็นเอกลักษณ์และแรงบิดที่ต่อเนื่อง พร้อมระบบอิเล็กทรอนิกส์ IMU 6 แกน
-                        ที่ควบคุมทุกการเคลื่อนไหวได้อย่างแม่นยำ
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Engine: 998cc, liquid-cooled inline 4 cylinder</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Max Power: 200 PS @ 13,500 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-blue-500">🏁</span>
-                            <span>Technology: 6-axis IMU, YCC-T, YCC-I, EBM</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-blue-400 font-semibold">
-                            <span class="text-blue-500">💰</span>
-                            <span>Price: 849,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://imgcdn.zigwheels.ph/large/gallery/exterior/86/2923/yamaha-yzf-r1-slant-rear-view-full-image-206327.jpg"
-                        alt="Yamaha YZF-R1"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://images5.1000ps.net/images_bikekat/2026/4-Yamaha/7961-R3/017-638993129573262107-yamaha-r3.jpg?width=920&height=566&mode=crop&format=webp"
+                    alt="Yamaha YZF-R1"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="yamaha" class="py-24 px-6 bg-neutral-900/50 relative z-10 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-blue-950/80 border border-blue-500/40 text-blue-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    R-SERIES
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    YAMAHA <br />
+                    <span class="text-blue-500">YZF-R6</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    รถซูเปอร์สปอร์ตระดับตำนานของ Yamaha ที่โดดเด่นด้วยเครื่องยนต์ 4 สูบเรียง 599 ซีซี รอบจัด
+                    ให้การตอบสนองที่เฉียบคมและการควบคุมที่ยอดเยี่ยม จนกลายเป็นหนึ่งในรถคลาส 600 ซีซี
+                    ที่ได้รับความนิยมมากที่สุดสำหรับการขับขี่ในสนามแข่ง แม้ปัจจุบันหลายประเทศจะจำหน่ายในรูปแบบ R6 GYTR
+                    สำหรับการแข่งขันเป็นหลัก </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Engine: 599cc, Liquid-cooled Inline 4 Cylinder</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Max Power: 118.4 PS @ 14,500 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-blue-500">🏁</span>
+                        <span>Technology: Ride-by-Wire (YCC-T), Quick Shifter, Traction Control System (TCS), Assist &
+                            Slipper Clutch, ABS, D-Mode, 6-speed Transmission</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-blue-500 text-blue-400 font-chakra font-bold italic hover:bg-blue-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <!-- HONDA SECTION GROUP -->
-    <div id="honda">
-        <!-- CBR150R -->
-        <section id="cbr150r" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        SPORT HERITAGE
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        HONDA <br />
-                        <span class="text-red-500">CBR150R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        "Rise of the Race" สปอร์ตไบค์พิกัด 150 ซีซี ถ่ายทอดเอกลักษณ์ความแรงและดีไซน์ดุดันระดับตำนาน CBR Series 
-                        คล่องตัวเร้าใจสำหรับชีวิตประจำวัน พร้อมระบบกันสะเทือนหน้าแบบ Upside Down และ Assist Slipper Clutch
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Engine: 149.16cc, DOHC 4-Valve Liquid-Cooled Single-Cylinder</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Transmission: 6-Speed with Assist Slipper Clutch</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Suspension & Brakes: Showa USD Fork, ABS with ESS</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-red-400 font-semibold">
-                            <span class="text-red-500">💰</span>
-                            <span>Price: 99,900 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl -z-10 group-hover:bg-blue-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://www.thaihonda.co.th/honda/uploads/cache/685/photos/shares/2022_Product-Page/Sport/All-New-CBR150R-2021/Color_Section_All_New_CBR150R_black_metalic.png"
-                        alt="Honda CBR150R"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://motorcycmagazine.grandprix.co.th/wp-content/uploads/2021/11/2022-Yamaha-R6-Race-1-1024x707.jpg"
+                    alt="Yamaha YZF-R1"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- HONDA -->
+    <section id="honda" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    FIREBLADE
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    HONDA <br />
+                    <span class="text-red-500">CBR1000RR-R SP</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    "Born to Race" ยอดรถซูเปอร์ไบค์ระดับเรือธงที่ได้รับการถ่ายทอด DNA และเทคโนโลยีอากาศพลศาสตร์
+                    (Winglets) ตรงจากรถแข่ง MotoGP (RC213V) เพื่อทำความเร็วขั้นสุดบนสนามแข่ง
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Engine: 999cc, Liquid-cooled 4-stroke Inline-4</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Max Power: 217.5 PS @ 14,500 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Technology: Öhlins NPX Smart EC, Brembo Stylema</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- CBR300R -->
-        <section id="cbr300r" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        MID-WEIGHT SUPERSPORT
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        HONDA <br />
-                        <span class="text-red-500">CBR300R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        "True Blood of CBR" ผสมผสานสมรรถนะความแรงระดับมิดเดิลคลาสเข้ากับความคล่องตัวขั้นสุด 
-                        ดีไซน์สปอร์ตฟูลแฟริ่งโฉบเฉี่ยวสไตล์เรซซิ่ง พร้อมเครื่องยนต์ 286 ซีซี ที่ให้อัตราเร่งจัดจ้านทั้งการใช้งานในเมืองและออกทริป
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Engine: 286cc, 4-Stroke DOHC 4-Valve Liquid-Cooled Single-Cylinder</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Max Power: ~30.5 HP @ 8,500 rpm (PGM-FI Fuel Injection)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Safety & Suspension: 2-Channel ABS with Pro-Link Monoshock</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-red-400 font-semibold">
-                            <span class="text-red-500">💰</span>
-                            <span>Price: 151,690 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://i.pinimg.com/736x/e1/7b/bb/e17bbb93c228ca9d73fdd9868e5866cf.jpg"
-                        alt="Honda CBR300R"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx9URzpMlsUmv5Eu1fmah1MYZ2YBP786NKqEHSfl0jAw&s=10"
+                    alt="Honda CBR1000RR-R SP"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+    <section id="honda" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    Neo Sports Café Series
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    HONDA <br />
+                    <span class="text-red-500">CB1000R BLACK EDITION</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    "The Ultimate Neo Sports Café" บิ๊กไบค์สไตล์เน็กเก็ตสายคลาสสิกดุดัน ดำสนิทด้วยชุดแต่ง Blacked-out
+                    รอบคัน ผสานความดิบของเครื่องยนต์ 4 สูบเข้ากับความประณีตระดับพรีเมียม
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Engine: 999cc, Liquid-cooled 4-stroke Inline-4</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Max Power: 145 PS @ 10,500 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Technology: Quickshifter (Up/Down), Throttle-by-Wire, 5" TFT Display with HSVCSma</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- CBR500R -->
-        <section id="cbr500r" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        SUPERSPORT TWIN
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        HONDA <br />
-                        <span class="text-red-500">CBR500R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        "Ignite the Fire" ซูเปอร์สปอร์ต 2 สูบยอดนิยมระดับบิ๊กไบค์ อัปเกรดความดุดันด้วย Winglets สไตล์เรซซิ่ง
-                        พร้อมระบบกันสะเทือนหน้า Showa SFF-BP และระบบความปลอดภัย HSTC ควบคุมแรงบิดอย่างมั่นใจทุกโค้ง
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Engine: 471cc, Liquid-Cooled Parallel-Twin DOHC 8-Valve</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Max Power: 47.6 PS @ 8,600 rpm | Torque: 43 Nm @ 6,500 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Suspension & Control: Showa 41mm SFF-BP USD Forks, HSTC & TFT</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-red-400 font-semibold">
-                            <span class="text-red-500">💰</span>
-                            <span>Price: 222,800 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMtprj4cXLOIw1MynDGI4-CM9iJ-0gPDENqENItRVcFhsXtYhetB5sjSm7&s=10"
-                        alt="Honda CBR500R"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwgzG5BznZd-cIxWOLW0yn8DTf_7buYNcFxDQBxUCbj2hD6wV_PKDCC-P4&s=10"
+                    alt="Honda CBR1000RR-R SP"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+    <section id="honda" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    FIREBLADE
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    HONDA <br />
+                    <span class="text-red-500">CBR650R</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    "Pure Sport Energy" รถสปอร์ตฟูลแฟริ่งขวัญใจมหาชน โดดเด่นด้วยเครื่องยนต์ 4
+                    สูบเรียงส่งเสียงคำรามทรงพลัง พร้อมดีไซน์หน้าตาโฉบเฉี่ยวสไตล์สปอร์ตเต็มขั้น
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Engine: 649cc, Liquid-cooled 4-stroke Inline-4</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Max Power: 95 PS @ 12,000 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Technology: Honda E-Clutch, Showa 41mm SFF-BP USD Forks, Emergency Stop Signal
+                            (ESS)</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- CBR650R -->
-        <section id="cbr650r" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        INLINE-4 POWER
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        HONDA <br />
-                        <span class="text-red-500">CBR650R</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        "Roar of the Four" สปอร์ตไบค์ 4 สูบเรียงระดับมิดเดิลเวตที่ผสมผสานความแรงเร้าใจเข้ากับการขับขี่ที่ลงตัว
-                        โดดเด่นด้วยสุ้มเสียงคำรามอันเป็นเอกลักษณ์ ทรงพลัง คล่องตัว และมาพร้อมเทคโนโลยี Honda E-Clutch เพื่อการควบคุมที่ลื่นไหลไร้รอยต่อ
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Engine: 649cc, DOHC 16-Valve Liquid-Cooled Inline-4</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Max Power: 95 PS @ 12,000 rpm | Torque: 63 Nm @ 9,500 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Technology: Honda E-Clutch, HSTC, Showa 41mm SFF-BP USD Forks</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-red-400 font-semibold">
-                            <span class="text-red-500">💰</span>
-                            <span>Price: 347,300 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://space-cdn.smokybike.com/smokybike.com-prod/listings/495228/conversions/LINE_ALBUM_%E0%B8%B3%E0%B8%AB%E0%B8%9E%E0%B9%80%E0%B8%AB%E0%B9%80%E0%B8%9E%E0%B8%AB%E0%B9%80_250425_1-large.jpg"
-                        alt="Honda CBR650R"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://space-cdn.smokybike.com/smokybike.com-prod/listings/327312/conversions/347378358_282585654191090_699549459630810483_n-large.jpg"
+                    alt="Honda CBR1000RR-R SP"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+    <section id="honda" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    Adventure Series
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    HONDA <br />
+                    <span class="text-red-500">CRF1100L AFRICA TWIN ADVENTURE SPORTS</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    "True Adventure" บิ๊กไบค์สายลุยระดับตำนาน
+                    ออกแบบมาเพื่อการเดินทางไกลข้ามโลกพร้อมลุยทุกสภาพถนนด้วยช่วงล่างไฟฟ้าและถังน้ำมันขนาดใหญ่
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Engine: 1,084cc, Liquid-cooled Unicam 4-stroke Parallel-Twin</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Max Power: 102 PS @ 7,500 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Technology: 6-Axis IMU, Showa EERA™ (Electronic Suspension), Dual Clutch Transmission
+                            (DCT)</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- CBR1000RR -->
-        <section id="cbr1000rr" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                <div class="reveal md:w-1/2 space-y-6">
-                    <div
-                        class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
-                        TOTAL CONTROL
-                    </div>
-                    <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                        HONDA <br />
-                        <span class="text-red-500">CBR1000RR</span>
-                    </h2>
-                    <p class="text-neutral-400 leading-relaxed">
-                        "Next Stage Total Control" ซูเปอร์สปอร์ตระดับตำนาน Fireblade ที่ผสานพละกำลังอันทรงพลังเข้ากับการควบคุมที่แม่นยำ น้ำหนักตัวถังเบาเป็นพิเศษ คล่องตัว ตอบสนองเฉียบคมทั้งบนถนนหลวงและสนามแข่ง
-                    </p>
-                    <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Engine: 998cc, Liquid-Cooled 4-Stroke DOHC Inline-4</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Max Power: ~192 PS @ 13,000 rpm | Torque: 114 Nm @ 11,000 rpm</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <span class="text-red-500">🏁</span>
-                            <span>Technology: 9-Level HSTC, Riding Modes, Throttle by Wire & IMU</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-red-400 font-semibold">
-                            <span class="text-red-500">💰</span>
-                            <span>Price: 779,000 THB</span>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <a href="#"
-                            class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
-                            EXPLORE FULL SPECS
-                        </a>
-                    </div>
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
                 </div>
-                <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
-                    <div
-                        class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
-                    </div>
-                    <img src="https://news.webike.net/wp-content/uploads/2022/12/HONDA_CBR1000RR-R_20221203_01.jpg"
-                        alt="Honda CBR1000RR Fireblade"
-                        class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                <img src="https://www.datocms-assets.com/119921/1714122428-2020-honda-africa-twin-crf1100-review-price-spec-1.jpg?auto=format&w=740"
+                    alt="Honda CBR1000RR-R SP"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
+    <section id="honda" class="py-24 px-6 bg-neutral-950 relative z-10 border-y border-neutral-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="reveal md:w-1/2 space-y-6">
+                <div
+                    class="inline-block px-3 py-1 bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
+                    FIREBLADE
+                </div>
+                <h2 class="font-chakra text-4xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
+                    HONDA <br />
+                    <span class="text-red-500">CBR500R</span>
+                </h2>
+                <p class="text-neutral-400 leading-relaxed">
+                    "The Racing DNA" รถสปอร์ตเรซซิ่งไซส์เริ่มต้น ทรงใหญ่ลุคซูเปอร์ไบค์ ขี่ง่าย ควบคุมคล่องตัว
+                    เหมาะสำหรับใช้งานประจำวันและซิ่งในเมือง
+                </p>
+                <ul class="space-y-3 text-neutral-300 text-sm font-medium font-chakra">
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Engine: 471cc, Liquid-cooled Parallel-Twin</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Max Power: 47 hp @ 8,600 rpm</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="text-red-500">🏁</span>
+                        <span>Technology: 7-Speed DCT + Walking Mode, Airbag System, Electronic Windscreen, Apple
+                            CarPlay™ / Android Auto™</span>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <a href="#"
+                        class="inline-block px-8 py-3 bg-transparent border border-red-500 text-red-400 font-chakra font-bold italic hover:bg-red-500 hover:text-neutral-950 transition-all skew-x-[-12deg]">
+                        EXPLORE FULL SPECS
+                    </a>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <!-- Section 4: Contact & Team Members -->
+            <div class="reveal md:w-1/2 relative group" style="transition-delay: 200ms;">
+                <div
+                    class="absolute inset-0 bg-red-500/20 rounded-full blur-3xl -z-10 group-hover:bg-red-500/30 transition-all duration-500">
+                </div>
+                <img src="https://boy-bigbike.com/wp-content/uploads/2025/07/LINE_NOTE_250701_1-4.jpg"
+                    alt="Honda CBR500R SP"
+                    class="w-full rounded-2xl border border-neutral-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            </div>
+        </div>
+    </section>
     <section id="contact" class="py-20 px-6 bg-neutral-900/60 relative z-10 border-t border-neutral-800">
         <div class="max-w-7xl mx-auto space-y-10">
 
+            <!-- Section Header -->
             <div class="reveal text-center max-w-2xl mx-auto space-y-3">
                 <span
                     class="inline-block px-3 py-1 bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-xs font-chakra tracking-widest skew-x-[-12deg]">
                     GET IN TOUCH
                 </span>
                 <h2 class="font-chakra text-3xl sm:text-5xl font-black italic text-white uppercase tracking-wide">
-                    CONTACT <span class="text-emerald-400">DEVELOPERS</span>
+                    CONTACT <span class="text-emerald-400">HEADQUARTERS</span>
                 </h2>
                 <p class="text-neutral-400 text-xs sm:text-sm">
-                    ทีมงานผู้พัฒนาระบบ Apex Biker ร่วมพูดคุย แลกเปลี่ยนข้อมูล หรือติดต่อโปรเจกต์ได้ทางช่องทางด้านล่าง
+                    ติดต่อเราผ่านช่องทางต่างๆ ด้านล่าง เพื่อสอบถามข้อมูลสเปก จองคิวทดลองขับ หรือเข้ารับบริการ
                 </p>
             </div>
 
             <!-- Grid 4 Contact Cards -->
             <div class="reveal grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                <!-- Card 1 -->
+                <!-- Card 1: Showroom Location -->
                 <div
                     class="p-6 bg-neutral-900/90 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-all glow-box space-y-4 text-center">
                     <div
-                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl overflow-hidden">
-                        <img src="11517.jpg" alt="jurry" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/101010/00ff87?text=Jerry'">
+                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+                        <img src="11517.jpg" alt="jurry" class="w-full h-full object-cover rounded-full photo">
                     </div>
-                    <h3 class="font-chakra text-lg font-bold italic text-white uppercase">Thiraphop Sapsiriloet</h3>
+                    <h3 class="font-chakra text-xl font-bold italic text-white uppercase">Thiraphop Sapsiriloet
+                    </h3>
                     <p class="text-neutral-400 text-xs leading-relaxed">
-                        Instagram: <a href="https://www.instagram.com/bukpx/" class="text-emerald-400 hover:underline">bukpx</a> <br />
-                        GitHub: <a href="https://github.com/bukki123456gg-boop" class="text-emerald-400 hover:underline">bukki123456gg</a> <br />
-                        Resume: <a href="https://bukki123456gg-boop.github.io/Jerry.HTML/" class="text-emerald-400 hover:underline">Profile Link</a>
+                        instragram: <a href="https://www.instagram.com/bukpx/">bukpx</a> <br />
+                        github: <a href="https://github.com/bukki123456gg-boop">bukki123456gg </a> <br />
+                        Resume: <a href="https://bukki123456gg-boop.github.io/Jerry.HTML/">bukki123456gg</a> <br />
                     </p>
                     <span
                         class="inline-block font-chakra text-[11px] text-emerald-400 font-semibold tracking-wider">คัลเลอร์ให้เรียกสี ขันHee ให้เรียกโพม</span>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Card 2: Hotline & Phone -->
                 <div
                     class="p-6 bg-neutral-900/90 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-all glow-box space-y-4 text-center">
                     <div
-                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl overflow-hidden">
-                        <img src="photo1.JPG" alt="Film" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/101010/00ff87?text=Film'">
+                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+                        <img src="photo1.JPG" alt="Film" class="w-full h-full object-cover rounded-full photo">
                     </div>
-                    <h3 class="font-chakra text-lg font-bold italic text-white uppercase">Sittichai Supasorn</h3>
+                    <h3 class="font-chakra text-xl font-bold italic text-white uppercase">Sittichai Supasorn</h3>
                     <p class="text-neutral-400 text-xs leading-relaxed">
-                        Instagram: <a href="https://www.instagram.com/fg_ilm1/" class="text-emerald-400 hover:underline">fg_ilm1</a> <br />
-                        GitHub: <a href="https://github.com/filmkimi" class="text-emerald-400 hover:underline">filmkimi</a> <br />
-                        Resume: <a href="https://filmkimi.github.io/resume_new/" class="text-emerald-400 hover:underline">Profile Link</a>
+                        instragram: <a href="https://www.instagram.com/fg_ilm1/">fg_ilm1</a> <br />
+                        github: <a href="https://github.com/filmkimi">filmkimi </a> <br />
+                        Resume: <a href="https://filmkimi.github.io/resume_new/">filmkimi</a> <br />
                     </p>
                     <span
-                        class="inline-block font-chakra text-[11px] text-emerald-400 font-semibold tracking-wider">ร่างกายไม่ครบ 32 ถ้าถามว่าขาดอะไร อ่อขาดเเฟน</span>
+                        class="inline-block font-chakra text-[11px] text-emerald-400 font-semibold tracking-wider">ร่างกายไม่ครบ
+                        32 ถ้าถามว่าขาดอะไร อ่อขาดเเฟน</span>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Card 3: Email & Support -->
                 <div
                     class="p-6 bg-neutral-900/90 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-all glow-box space-y-4 text-center">
                     <div
-                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl overflow-hidden">
-                        <img src="S__15433738.jpg" alt="Pun" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/101010/00ff87?text=Pero'">
+                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+                        <img src="S__15433738.jpg" alt="Pun" class="w-full h-full object-cover rounded-full photo">
                     </div>
-                    <h3 class="font-chakra text-lg font-bold italic text-white uppercase">Punnawat Mahakeeta</h3>
+                    <h3 class="font-chakra text-xl font-bold italic text-white uppercase">Punnawat Mahakeeta</h3>
                     <p class="text-neutral-400 text-xs leading-relaxed">
-                        Instagram: <a href="https://www.instagram.com/pero.jr_/" class="text-emerald-400 hover:underline">pero.jr_</a> <br />
-                        GitHub: <a href="https://github.com/PeroJR305" class="text-emerald-400 hover:underline">PeroJR305</a> <br />
-                        Resume: <a href="https://perojr305.github.io/ResumePERO/" class="text-emerald-400 hover:underline">Profile Link</a>
+                        instragram: <a href="https://www.instagram.com/pero.jr_/">pero.jr_</a> <br />
+                        github: <a href="https://github.com/PeroJR305">PeroJR305</a> <br />
+                        Resume: <a href="https://perojr305.github.io/ResumePERO/">PeroJR305</a> <br />
                     </p>
                     <span
-                        class="inline-block font-chakra text-[11px] text-emerald-400 font-semibold tracking-wider">ถ้าคุณไม่ชอบขนม หันมาชอบผมก็ได้นะ</span>
+                        class="inline-block font-chakra text-[11px] text-emerald-400 font-semibold tracking-wider">ถ้าคุณไม่ชอบขนม
+                        หันมาชอบผมก็ได้นะ</span>
                 </div>
 
-                <!-- Card 4 -->
+                <!-- Card 4: Social Media -->
                 <div
                     class="p-6 bg-neutral-900/90 border border-neutral-800 rounded-xl hover:border-emerald-500/50 transition-all glow-box space-y-4 text-center">
                     <div
-                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl overflow-hidden">
-                        <img src="S__6504450.jpg" alt="flat" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/101010/00ff87?text=Flat'">
+                        class="w-24 h-24 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+                        <img src="S__6504450.jpg" alt="flat" class="w-full h-full object-cover rounded-full photo">
                     </div>
-                    <h3 class="font-chakra text-lg font-bold italic text-white uppercase">Weerapat Thobansong</h3>
+                    <h3 class="font-chakra text-xl font-bold italic text-white uppercase">Weerapat Thobansong</h3>
                     <p class="text-neutral-400 text-xs leading-relaxed">
-                        Instagram: <a href="https://www.instagram.com/weerapat_7380" class="text-emerald-400 hover:underline">weerapat_7380</a> <br />
-                        GitHub: <a href="https://github.com/weerapat7380-sys" class="text-emerald-400 hover:underline">weerapat7380-sys</a> <br />
-                        Resume: <a href="https://weerapat7380-sys.github.io/ResumeFLAT/" class="text-emerald-400 hover:underline">Profile Link</a>
+                        instragram: <a
+                            href="https://www.instagram.com/weerapat_7380?igsh=N3dsY3pxcDdycG5v&utm_source=qr">weerapat_7380</a>
+                        <br />
+                        github: <a href="https://github.com/weerapat7380-sys">weerapat7380-sys</a> <br />
+                        Resume: <a href="https://weerapat7380-sys.github.io/ResumeFLAT/">weerapat7380</a> <br />
                     </p>
                     <span
                         class="inline-block font-chakra text-[11px] text-emerald-400 font-semibold tracking-wider">ถ้าป้าข้างบ้านชอบถามว่ากินเหล้าได้อะไร...ให้ตอบไปได้เสมอ</span>
@@ -1158,266 +1065,61 @@
 
     <!-- Footer -->
     <footer class="border-t border-neutral-800/80 bg-neutral-950/80 py-6 z-10 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-neutral-500 text-xs font-chakra tracking-wider">
-                &copy; 2026 APEX//RIDER. ALL RIGHTS RESERVED. HIGH PERFORMANCE MOTOCYCLE SHOWCASE.
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-neutral-500 text-xs font-chakra">
+
             </p>
-            <div class="flex space-x-6 text-xs font-chakra text-neutral-400">
-                <a href="#kawasaki" class="hover:text-emerald-400 transition-colors">KAWASAKI</a>
-                <a href="#yamaha" class="hover:text-emerald-400 transition-colors">YAMAHA</a>
-                <a href="#honda" class="hover:text-emerald-400 transition-colors">HONDA</a>
-                <a href="#contact" class="hover:text-emerald-400 transition-colors">CONTACT</a>
-            </div>
         </div>
     </footer>
 
-    <!-- ========================================================= -->
-    <!-- MODAL POPUP: สมัครสมาชิก & ลงทะเบียน (โปร่งใส เห็นฉากหลัง) -->
-    <!-- ========================================================= -->
-    <div 
-        id="signupModal" 
-        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-[6px] hidden opacity-0 transition-opacity duration-200"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modalTitle"
-    >
-        <!-- Modal Dialog Box -->
-        <div 
-            id="modalBox" 
-            class="glass-modal w-full max-w-md border border-emerald-500/40 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_25px_rgba(0,255,135,0.25)] p-6 relative overflow-hidden transform scale-95 transition-all duration-200"
-        >
-            <!-- Top Neon Accent -->
-            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-600 via-apex-green to-emerald-400"></div>
-
-            <!-- Close Button (X) -->
-            <button 
-                onclick="closeModal()" 
-                type="button"
-                class="absolute top-4 right-4 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full p-1.5 transition-colors cursor-pointer"
-                aria-label="Close modal"
-            >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-
-            <!-- Modal Header -->
-            <div class="mb-5 pr-6 text-left font-chakra">
-                <h3 id="modalTitle" class="text-lg sm:text-xl font-black text-white flex items-center gap-2 italic uppercase">
-                    <span class="w-2.5 h-2.5 rounded-full bg-apex-green shadow-[0_0_8px_#00ff87]"></span>
-                    <span>เลือกรูปแบบการเข้าร่วม</span>
-                </h3>
-                <p class="text-xs text-gray-400 mt-1 font-prompt font-light">
-                    เลือกระหว่างลงทะเบียนรับข้อมูลทั่วไป หรือสมัครสมาชิกสัญญาพิเศษ
-                </p>
-            </div>
-
-            <!-- TAB TOGGLE: 2 Options -->
-            <div class="grid grid-cols-2 p-1 bg-black/60 rounded-xl border border-white/10 mb-5 font-chakra">
-                <button 
-                    id="tabBtnRegister" 
-                    onclick="switchTab('register')" 
-                    type="button"
-                    class="py-2.5 text-xs font-semibold rounded-lg transition-all text-gray-400 hover:text-white cursor-pointer"
-                >
-                    ลงทะเบียน
-                </button>
-                
-                <button 
-                    id="tabBtnMember" 
-                    onclick="switchTab('member')" 
-                    type="button"
-                    class="py-2.5 text-xs font-bold rounded-lg transition-all text-black bg-apex-green shadow-[0_0_12px_rgba(0,255,135,0.5)] cursor-pointer"
-                >
-                    สมัครสมาชิก VIP (฿9,999)
-                </button>
-            </div>
-
-            <!-- FORM 1: ลงทะเบียนเฉยๆ (ฟรี) -->
-            <div id="contentRegister" class="space-y-4 hidden text-left font-prompt">
-                <div class="p-3 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300">
-                    📌 สำหรับผู้ที่ต้องการรับคำปรึกษาและรายละเอียดสัญญาเบื้องต้นโดยไม่มีค่าใช้จ่าย
-                </div>
-
-                <form id="formRegisterOnly" onsubmit="handleFormSubmit(event, 'ลงทะเบียนสำเร็จ! เจ้าหน้าที่จะติดต่อกลับโดยเร็ว')">
-                    <div class="space-y-3">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">ชื่อ - นามสกุล *</label>
-                            <input 
-                                type="text" 
-                                required 
-                                placeholder="ระบุชื่อและนามสกุลของคุณ" 
-                                class="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-sm outline-none transition"
-                            >
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">เบอร์โทรศัพท์ติดต่อ *</label>
-                            <input 
-                                type="tel" 
-                                required 
-                                placeholder="เช่น 081-xxx-xxxx" 
-                                class="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-sm outline-none transition"
-                            >
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">รุ่นรถยนต์ / บิ๊กไบค์ที่สนใจ (ถ้ามี)</label>
-                            <input 
-                                type="text" 
-                                placeholder="เช่น Ninja H2, YZF-R1, CBR1000RR" 
-                                class="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-sm outline-none transition"
-                            >
-                        </div>
-                    </div>
-
-                    <button 
-                        type="submit" 
-                        class="w-full mt-5 py-3 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-sm transition border border-white/10 hover:border-white/20 cursor-pointer font-chakra tracking-wide"
-                    >
-                        ส่งข้อมูลลงทะเบียนฟรี
-                    </button>
-                </form>
-            </div>
-
-            <!-- FORM 2: สมัครสมาชิกเพิ่มสัญญา (ราคา 9,999 บาท) -->
-            <div id="contentMember" class="space-y-4 text-left font-prompt">
-                
-                <!-- Package Summary Box -->
-                <div class="p-3.5 rounded-xl bg-gradient-to-r from-emerald-950/40 via-black to-emerald-950/30 border border-emerald-500/40 relative overflow-hidden">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-wider text-apex-green bg-emerald-500/20 px-2 py-0.5 rounded font-chakra">
-                                VIP PACKAGE
-                            </span>
-                            <h4 class="text-sm sm:text-base font-bold text-white mt-1">สมาชิกเพิ่มสัญญาซื้อรถพิเศษ</h4>
-                            <p class="text-[11px] text-gray-400">สิทธิประโยชน์และวงเงินสูงสุดตลอดสัญญา</p>
-                        </div>
-                        
-                        <div class="text-right">
-                            <div class="text-xl sm:text-2xl font-black text-apex-green tracking-tight font-chakra">฿9,999</div>
-                            <span class="text-[10px] text-gray-400 font-chakra">ชำระครั้งเดียว</span>
-                        </div>
-                    </div>
-
-                    <!-- Checklist สิทธิประโยชน์ -->
-                    <ul class="mt-2.5 pt-2.5 border-t border-white/10 text-[11px] sm:text-xs text-gray-300 space-y-1">
-                        <li class="flex items-center gap-2">
-                            <span class="text-apex-green font-bold">✓</span> ขยายเวลาและเงื่อนไขสัญญาการซื้อรถยนต์/บิ๊กไบค์
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-apex-green font-bold">✓</span> สิทธิ์อนุมัติพิเศษแบบ Fast Track ภายใน 24 ชม.
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-apex-green font-bold">✓</span> ที่ปรึกษาสัญญาและไฟแนนซ์ส่วนตัว 1:1
-                        </li>
-                    </ul>
-                </div>
-
-                <form id="formMemberVIP" onsubmit="handleFormSubmit(event, 'ยืนยันการสมัครสมาชิก VIP 9,999 บาท เรียบร้อยแล้ว!')">
-                    <div class="space-y-2.5">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">ชื่อ - นามสกุล ผู้ขอทำสัญญา *</label>
-                            <input 
-                                type="text" 
-                                required 
-                                placeholder="ชื่อ - นามสกุลจริงตามบัตรประชาชน" 
-                                class="w-full px-3.5 py-2 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-sm outline-none transition"
-                            >
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-2.5">
-                            <div>
-                                <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">เบอร์โทรศัพท์ *</label>
-                                <input 
-                                    type="tel" 
-                                    required 
-                                    placeholder="08x-xxx-xxxx" 
-                                    class="w-full px-3.5 py-2 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-sm outline-none transition"
-                                >
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">Line ID</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="ID Line" 
-                                    class="w-full px-3.5 py-2 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-sm outline-none transition"
-                                >
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium text-gray-300 mb-1 font-chakra tracking-wide">ข้อมูลสัญญาหรือรุ่นรถที่ต้องการเพิ่มสัญญา</label>
-                            <textarea 
-                                rows="2" 
-                                placeholder="ระบุรุ่นรถ หรือรายละเอียดข้อเสนอที่ต้องการ..." 
-                                class="w-full px-3 py-1.5 rounded-lg bg-black/60 border border-neutral-700 focus:border-apex-green focus:ring-1 focus:ring-apex-green text-white placeholder-gray-500 text-xs outline-none transition resize-none"
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <button 
-                        type="submit" 
-                        class="btn-neon-glow w-full mt-3.5 py-3 rounded-xl bg-apex-green text-black font-extrabold text-sm hover:brightness-110 active:scale-95 transition flex items-center justify-center gap-2 cursor-pointer font-chakra uppercase tracking-wider"
-                    >
-                        <span>ยืนยันสมัครสมาชิก VIP (฿9,999)</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Toast Notification Message Box -->
-    <div 
-        id="toastBox" 
-        class="fixed bottom-6 right-6 z-[110] transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none"
-    >
-        <div class="bg-black/90 border border-emerald-400 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur-md">
-            <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold font-chakra">
-                ✓
-            </div>
-            <p id="toastMessage" class="text-sm font-medium font-prompt"></p>
-        </div>
-    </div>
-
-    <!-- ไฟล์สคริปต์ภายนอก -->
-    <script src="index.js"></script>
-    <!-- Fixed/Sticky Social Bar (APEX//RIDER Theme) -->
-<div class="sticky-social-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgba(18, 18, 18, 0.95); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5); z-index: 100; box-sizing: border-box;">
+   <!-- Fixed/Sticky Social Bar (APEX//RIDER Theme) -->
+<div class="sticky-social-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgba(18, 18, 18, 0.95); backdrop-filter: blur(8px); padding: 10px 24px; display: flex; justify-content: flex-start; align-items: center; gap: 24px; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8); z-index: 100; box-sizing: border-box; flex-wrap: wrap;">
     
     <!-- ข้อความด้านซ้าย -->
-    <div style="font-family: sans-serif; font-size: 14px; font-weight: bold; color: #00ff66; letter-spacing: 1px; text-transform: uppercase;">
+    <div style="font-family: sans-serif; font-size: 14px; font-weight: 800; color: #00ff66; letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
+        <span style="display: inline-block; width: 8px; height: 8px; background-color: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66;"></span>
         APEX//RIDER SOCIALS
     </div>
 
-    <!-- ไอคอนด้านขวา (Facebook, Instagram, TikTok) -->
-    <div class="social-icons" style="display: flex; gap: 18px; align-items: center;">
+    <!-- ปุ่มปุ่มโซเชียลพร้อมชื่อ (Facebook, Instagram, TikTok) -->
+    <div class="social-icons" style="display: flex; gap: 12px; align-items: center; justify-content: flex-start; font-family: sans-serif; flex-wrap: wrap;">
         
         <!-- Facebook: ET PIM -->
-        <a href="https://www.facebook.com/ET.PIM?locale=th_TH" target="_blank" rel="noopener noreferrer" style="color: #00ff66; display: flex; align-items: center; transition: transform 0.2s; cursor: inherit;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-            <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://www.facebook.com/ET.PIM?locale=th_TH" target="_blank" rel="noopener noreferrer" 
+           style="color: #00ff66; display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(0, 255, 102, 0.05); border: 1px solid rgba(0, 255, 102, 0.3); border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: bold; transition: all 0.3s ease; cursor: inherit;" 
+           onmouseover="this.style.background='rgba(0, 255, 102, 0.2)'; this.style.borderColor='#00ff66'; this.style.boxShadow='0 0 10px rgba(0, 255, 102, 0.4)'; this.style.transform='translateY(-2px)';" 
+           onmouseout="this.style.background='rgba(0, 255, 102, 0.05)'; this.style.borderColor='rgba(0, 255, 102, 0.3)'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.89h-2.33v6.99C18.34 21.12 22 16.99 22 12z"/>
             </svg>
+            <span>Facebook: Engineering and Technology (PANYAPIWAT)</span>
         </a>
 
         <!-- Instagram: ET PIM -->
-        <a href="https://www.instagram.com/et.pim/" target="_blank" rel="noopener noreferrer" style="color: #00ff66; display: flex; align-items: center; transition: transform 0.2s; cursor: inherit;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-            <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://www.instagram.com/et.pim/" target="_blank" rel="noopener noreferrer" 
+           style="color: #00ff66; display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(0, 255, 102, 0.05); border: 1px solid rgba(0, 255, 102, 0.3); border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: bold; transition: all 0.3s ease; cursor: inherit;" 
+           onmouseover="this.style.background='rgba(0, 255, 102, 0.2)'; this.style.borderColor='#00ff66'; this.style.boxShadow='0 0 10px rgba(0, 255, 102, 0.4)'; this.style.transform='translateY(-2px)';" 
+           onmouseout="this.style.background='rgba(0, 255, 102, 0.05)'; this.style.borderColor='rgba(0, 255, 102, 0.3)'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
+            <span>Instagram: et.pim</span>
         </a>
 
         <!-- TikTok: ET PIM -->
-        <a href="https://www.tiktok.com/@et.pim" target="_blank" rel="noopener noreferrer" style="color: #00ff66; display: flex; align-items: center; transition: transform 0.2s; cursor: inherit;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
-            <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://www.tiktok.com/@et.pim" target="_blank" rel="noopener noreferrer" 
+           style="color: #00ff66; display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(0, 255, 102, 0.05); border: 1px solid rgba(0, 255, 102, 0.3); border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: bold; transition: all 0.3s ease; cursor: inherit;" 
+           onmouseover="this.style.background='rgba(0, 255, 102, 0.2)'; this.style.borderColor='#00ff66'; this.style.boxShadow='0 0 10px rgba(0, 255, 102, 0.4)'; this.style.transform='translateY(-2px)';" 
+           onmouseout="this.style.background='rgba(0, 255, 102, 0.05)'; this.style.borderColor='rgba(0, 255, 102, 0.3)'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-1.39V9.08a6.32 6.32 0 1 0 6.34 6.32V8.69a8.27 8.27 0 0 0 5.07 1.75v-3.75a4.82 4.82 0 0 1-1.3-.002z"/>
             </svg>
+            <span>TikTok: ET.PIM</span>
         </a>
 
     </div>
 </div>
+<script src="index.js"></script>
 </body>
 
 </html>
