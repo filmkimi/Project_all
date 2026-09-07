@@ -1,44 +1,148 @@
+/* STREAMING_CHUNK:Configuring base styles and typography /
+/ ==========================================
+
+Base & Global Styles
+========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700;1,900&family=Prompt:wght@300;400;600;700&display=swap');
+
+html {
+scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Prompt', sans-serif;
-    background-color: #09090b;
-    color: #f4f4f5;
+font-family: 'Prompt', sans-serif;
+background-color: #09090b;
+color: #f4f4f5;
+overflow-x: hidden;
 }
 
 .font-chakra {
-    font-family: 'Chakra Petch', sans-serif;
+font-family: 'Chakra Petch', sans-serif;
 }
 
-/* Custom Green Glow Effects */
-.glow-box {
-    box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.25);
+/* STREAMING_CHUNK:Styling custom cursor and pointer behaviors /
+/ ==========================================
+2. Custom Cursor & Interactive Elements
+========================================== /
+/ ซ่อน Cursor เดิมเมื่อมี Custom Cursor ในอุปกรณ์ที่ใช้เมาส์ */
+@media (hover: hover) and (pointer: fine) {
+html, body, a, button, input, textarea, select, label {
+cursor: none !important;
+}
 }
 
-/* Canvas Speed Lines Background */
+/* แสดง Cursor ปกติบนหน้าจอสัมผัส (มือถือ/แท็บเล็ต) */
+@media (hover: none) and (pointer: coarse) {
+#custom-cursor {
+display: none !important;
+}
+html, body, a, button, input, textarea, select, label {
+cursor: auto !important;
+}
+}
+
+#custom-cursor {
+filter: drop-shadow(0 0 8px rgba(0, 255, 135, 0.8));
+transition: transform 0.08s ease-out;
+}
+
+/* STREAMING_CHUNK:Styling background canvas and visual effects /
+/ ==========================================
+3. Background Canvas & Speed Lines
+========================================== */
 #speedCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+pointer-events: none;
 }
+
+.speed-line {
+position: absolute;
+height: 1.5px;
+background: linear-gradient(90deg, transparent, rgba(0, 255, 135, 0.4), transparent);
+transform: rotate(-12deg);
+pointer-events: none;
+}
+
+/* STREAMING_CHUNK:Applying neon glows and interactive button styles /
+/ ==========================================
+4. Glow & Button Effects
+========================================== */
+.glow-box {
+box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.25);
+}
+
+.btn-neon-glow {
+box-shadow: 0 0 16px rgba(0, 255, 135, 0.45);
+transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-neon-glow:hover {
+box-shadow: 0 0 28px rgba(0, 255, 135, 0.75), 0 0 10px rgba(0, 255, 135, 0.9);
+transform: translateY(-1px);
+}
+
+.btn-neon-glow:active {
+transform: scale(0.97);
+}
+
+/* STREAMING_CHUNK:Styling modal glassmorphism and popup dialogs /
+/ ==========================================
+5. Modal & Glassmorphism Styles
+========================================== */
+.glass-modal {
+background: rgba(10, 16, 13, 0.88);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(0, 255, 135, 0.3);
+}
+
+/* Custom Scrollbar สำหรับ Modal และหน้าเว็บ */
+::-webkit-scrollbar {
+width: 6px;
+height: 6px;
+}
+
+::-webkit-scrollbar-track {
+background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+background: #16281e;
+border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #00ff87;
+}
+
+/* STREAMING_CHUNK:Configuring animations and scroll reveal effects /
+/ ==========================================
+6. Animation & Reveal Transitions
+========================================== */
 .photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 50%;
 }
+
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+opacity: 0;
+transform: translateY(40px);
+transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
 
 .reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+opacity: 1;
+transform: translateY(0);
 }
-html, body a, button, input, textarea {
-  cursor: none !important;
+
+/* Input Focus Glow */
+input:focus, textarea:focus {
+box-shadow: 0 0 14px rgba(0, 255, 135, 0.2);
 }

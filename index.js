@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clickSound = new Audio('sound_bigbike.MP3');
     clickSound.volume = 0.5; 
 
-  
     document.addEventListener('click', (e) => {
-      
         if (e.target.closest('.sound-btn')) {
             console.log('🔊 ปุ่ม sound-btn ถูกกดแล้ว!');
             
@@ -22,14 +20,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // ==========================================
+    // Custom Cursor Tracking
+    // ==========================================
     const customCursor = document.getElementById('custom-cursor');
 
     document.addEventListener('mousemove', (e) => {
-    if (customCursor) {
-        customCursor.style.left = `${e.clientX}px`;
-        customCursor.style.top = `${e.clientY}px`;
+        if (customCursor) {
+            customCursor.style.left = `${e.clientX}px`;
+            customCursor.style.top = `${e.clientY}px`;
+        }
+    });
+
+    // ==========================================
+    // Tailwind Config
+    // ==========================================
+    if (window.tailwind) {
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Kanit', 'sans-serif'],
+                        racing: ['Orbitron', 'sans-serif'],
+                        header: ['Teko', 'sans-serif'],
+                    },
+                    colors: {
+                        apex: {
+                            green: '#00ff87',
+                            darkGreen: '#059669',
+                            bg: '#050706',
+                            card: '#0a100d',
+                            border: '#16281e'
+                        }
+                    }
+                }
+            }
+        };
     }
-});
+    
     // ==========================================
     // 2. Mobile Hamburger Menu Control
     // ==========================================
@@ -161,10 +191,106 @@ document.addEventListener('DOMContentLoaded', () => {
 
         reveals.forEach((el) => observer.observe(el));
     }
+
+    // =========================================================
+    // 5. Membership Modal Control (ระบบหน้าต่างสมัครสมาชิก Pop-up)
+    // =========================================================
+    const modal = document.getElementById('signupModal');
+    const modalBox = document.getElementById('modalBox');
+    const tabRegister = document.getElementById('tabBtnRegister');
+    const tabMember = document.getElementById('tabBtnMember');
+    const contentRegister = document.getElementById('contentRegister');
+    const contentMember = document.getElementById('contentMember');
+    const toastBox = document.getElementById('toastBox');
+    const toastMessage = document.getElementById('toastMessage');
+
+    // ฟังก์ชันเปิดหน้าต่าง Modal
+    window.openModal = function (defaultTab = 'member') {
+        if (!modal) return;
+        window.switchTab(defaultTab);
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            if (modalBox) {
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    };
+
+    // ฟังก์ชันปิดหน้าต่าง Modal
+    window.closeModal = function () {
+        if (!modal) return;
+        modal.classList.add('opacity-0');
+        if (modalBox) {
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+        }
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 200);
+    };
+
+    // ฟังก์ชันสลับแท็บ (ลงทะเบียนเฉยๆ / สมัครสมาชิก VIP ฿9,999)
+    window.switchTab = function (tab) {
+        if (!tabRegister || !tabMember || !contentRegister || !contentMember) return;
+        
+        if (tab === 'register') {
+            tabRegister.className = "py-2.5 text-xs font-bold rounded-lg transition-all text-black bg-emerald-400 shadow-[0_0_12px_rgba(0,255,135,0.5)] cursor-pointer";
+            tabMember.className = "py-2.5 text-xs font-semibold rounded-lg transition-all text-gray-400 hover:text-white cursor-pointer";
+            contentRegister.classList.remove('hidden');
+            contentMember.classList.add('hidden');
+        } else {
+            tabMember.className = "py-2.5 text-xs font-bold rounded-lg transition-all text-black bg-emerald-400 shadow-[0_0_12px_rgba(0,255,135,0.5)] cursor-pointer";
+            tabRegister.className = "py-2.5 text-xs font-semibold rounded-lg transition-all text-gray-400 hover:text-white cursor-pointer";
+            contentMember.classList.remove('hidden');
+            contentRegister.classList.add('hidden');
+        }
+    };
+
+    // ฟังก์ชันจัดการเมื่อกด Submit แบบฟอร์ม
+    window.handleFormSubmit = function (event, successText) {
+        event.preventDefault();
+        window.closeModal();
+        window.showToast(successText);
+        event.target.reset();
+    };
+
+    // ฟังก์ชันแจ้งเตือน Toast Message กล่องสวยงาม
+    window.showToast = function (message) {
+        if (!toastBox || !toastMessage) return;
+        toastMessage.textContent = message;
+        toastBox.classList.remove('translate-y-20', 'opacity-0');
+        toastBox.classList.add('translate-y-0', 'opacity-100');
+
+        setTimeout(() => {
+            toastBox.classList.add('translate-y-20', 'opacity-0');
+            toastBox.classList.remove('translate-y-0', 'opacity-100');
+        }, 4000);
+    };
+
+    // ปิดเมื่อคลิกพื้นที่ด้านนอกกล่อง Modal
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                window.closeModal();
+            }
+        });
+    }
+
+    // ปิดเมื่อกดปุ่ม Escape บนคีย์บอร์ด
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            window.closeModal();
+        }
+    });
+
 });
 
 // ==========================================
-// 5. Background Speed Lines Canvas
+// 6. Background Speed Lines Canvas
 // ==========================================
 const canvas = document.getElementById('speedCanvas');
 if (canvas) {
